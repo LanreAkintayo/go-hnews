@@ -1,0 +1,32 @@
+{{define "content"}}
+<div class="container">
+    <div class="auth-form">
+        <h2>Submit new post</h2>
+
+        {{with .Form}}
+        {{with .Errors.Get "generic"}}
+        <div class="error-message">{{.}}</div>
+        {{end}}
+        <form action="/submit" method="post" autocomplete="off">
+            <div class="form-group">
+                <label for="title">Post title:</label>
+                <input type="text" id="title" name="title" value="{{.Get "title"}}" required>
+                {{with .Errors.Get "title"}}
+                <div class="inline-error">{{.}}</div>
+                {{end}}
+            </div>
+
+            <div class="form-group">
+                <label for="url">Post URL:</label>
+                <input type="url" id="url" name="url" value="{{.Get "url"}}" required>
+                {{with .Errors.Get "url"}}
+                <div class="inline-error">{{.}}</div>
+                {{end}}
+            </div>
+
+            <button type="submit" class="btn-primary">Submit post</button>
+        </form>
+        {{end}}
+    </div>
+</div>
+{{end}}
