@@ -52,6 +52,7 @@ func (app *application) requireAuth(next http.Handler) http.Handler {
 func (app *application) authenticate(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		exists := app.session.Exists(r, loggedInUserKey)
+		
 		if !exists {
 			next.ServeHTTP(w, r)
 			return

@@ -84,29 +84,6 @@ func TestRequireAuth_NotAuthenticated(t *testing.T) {
 	assert.Equal(t, "/login?redirectTo=/test", w.Header().Get("Location"))
 }
 
-func contextWithAuth(ctx context.Context, isAuth interface{}) context.Context {
-	return context.WithValue(ctx, contextAuthKey, isAuth)
-}
-
-/*
-This is where I'm going to. Let me just drop this here; I'm using it as guide
-
-
-package main
-
-import (
-	"bytes"
-	"context"
-	"log"
-	"net/http"
-	"net/http/httptest"
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
-
-
-
 func TestAuthenticate_ValidSession(t *testing.T) {
 	defer cleanupTestData(t)
 	userID, err := testApp.userRepo.CreateUser(
@@ -152,6 +129,8 @@ func TestAuthenticate_ValidSession(t *testing.T) {
 
 }
 
+func contextWithAuth(ctx context.Context, isAuth interface{}) context.Context {
+	return context.WithValue(ctx, contextAuthKey, isAuth)
+}
 
 
-*/

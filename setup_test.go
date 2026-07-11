@@ -49,16 +49,18 @@ func setupApp(db *sql.DB) *application {
 	sess := sessions.New([]byte("super-secret-key"))
 	sess.Lifetime = 24 * time.Hour
 
-	return &application{
-		userRepo: NewSQLUserRepository(db),
-		postRepo: NewSQLPostRepository(db),
-		session: sess,
-		errorLog: log.New(io.Discard, "",0),
-		infoLog: log.New(io.Discard, "", 0),
+	app := &application{
+		userRepo:    NewSQLUserRepository(db),
+		postRepo:    NewSQLPostRepository(db),
+		session:     sess,
+		errorLog:    log.New(io.Discard, "", 0),
+		infoLog:     log.New(io.Discard, "", 0),
 		templateDir: "./templates",
-		publicPath: "./public",
+		publicPath:  "./public",
 	}
+	app.tp = NewTemplateRenderer(app.templateDir, true)
 
+	return app
 }
 
 func setupTestSchema(db *sql.DB) error {
