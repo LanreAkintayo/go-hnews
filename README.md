@@ -1,1 +1,1 @@
-# go-hnews
+## go-hnews
