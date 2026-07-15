@@ -20,7 +20,7 @@ func TestNewForm(t *testing.T) {
 
 func TestForm_Required(t *testing.T){
 	values := url.Values{}
-	values.Add("email", "test@test.com")
+	values.Add("email", "lanre@test.com")
 	values.Add("empty", "  ")
 
 	form := NewForm(values)
